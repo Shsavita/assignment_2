@@ -1,0 +1,29 @@
+ import java.util.Scanner;
+ public class Main {
+
+	public static void main(String[] args) {
+		 
+		Scanner sc=new Scanner(System.in);
+             long n=sc.nextLong();
+		System.out.println(root(n));
+
+	}
+
+	public static int root(long  n) {
+		long lo = 1;
+		long hi = n;
+		long ans = 0;
+		while (lo <= hi) {
+			long mid = (lo + hi) / 2;
+			if (mid * mid <= n) {
+				ans = mid;
+				lo = mid + 1;
+			} else {
+				hi = mid - 1;
+			}
+		}
+		return ans;
+
+	}
+
+}
