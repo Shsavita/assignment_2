@@ -1,0 +1,53 @@
+ import java.util.Scanner;
+public class Main {
+ 	public static void main(String[] args) {
+ 		Scanner sc = new Scanner(System.in);
+		int x = sc.nextInt(); 
+		int y = sc.nextInt(); 
+		int[] boards = new int[y];
+		for (int i = 0; i < boards.length; i++)
+			boards[i] = sc.nextInt();
+		System.out.println(minTime(boards, y, x));
+		sc.close();
+ 	}
+ 	public static int getMax(int arr[], int y) {
+		int max = Integer.MIN_VALUE;
+		for (int i = 0; i < y; i++)
+			if (arr[i] > max)
+			 	max = arr[i];
+			return max;
+		}
+ 	public static int getSum(int arr[], int y) {
+		int total = 0;
+		for (int i = 0; i < y; i++)
+			total += arr[i];
+		return total;
+	}
+ 	static int numberOfPainters(int arr[], int y, int maxLen) {
+		int total = 0, numPainters = 1;
+ 		for (int i = 0; i < y; i++) 
+		 {
+			total += arr[i];
+ 				if (total > maxLen) 
+				{
+ 					total = arr[i];
+				numPainters++;
+			}
+		}
+ 		return numPainters;
+	}
+ 	public static int minTime(int arr[], int y, int x) {
+		int lo = getMax(arr, y);
+		int hi = getSum(arr, y);
+ 		while (lo < hi) 
+		 {
+			int mid = lo + (hi - lo) / 2;
+			int requiredPainters = numberOfPainters(arr, y, mid);
+			if (requiredPainters <= x)
+				hi = mid;
+			else
+				lo = mid + 1;
+		}
+		return lo;
+	}
+}
