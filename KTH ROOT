@@ -1,0 +1,31 @@
+ import java.util.Scanner;
+ public class Main{
+ public static void main(String args[]) {
+		Scanner sc = new Scanner(System.in);
+
+
+		int N = sc.nextInt();
+		while(N-->0){
+			long n1 = sc.nextLong();
+			int n2 = sc.nextInt();
+			 System.out.println(kth_root(n1,n2));
+		}
+    }
+
+
+	public static long kth_root(long n1, int n2){
+		long s=1, e=n1;
+		long a=0;
+		while(s<=e){
+			long mid=(s+e)/2;
+			if((long)Math.pow(mid,n2)<=n1){
+				a = mid;
+				s = mid+1;
+			}
+			else{
+				e=mid-1;
+			}
+		}
+		return a;
+	}
+ }
